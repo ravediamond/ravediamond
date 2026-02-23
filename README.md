@@ -15,8 +15,6 @@ Based in Paris. Currently at Air Liquide. Focused on making AI systems that run 
 - Deployed on NVIDIA Jetson Orin NX via vLLM and llama.cpp with quantized models (~3s end-to-end latency)
 - Built for the **NVIDIA GTC x Hugging Face Golden Ticket Contest** — ranked #2 in community rankings
 
-**[huggingface/lerobot — Reachy Mini Integration (PR #2726)](https://github.com/huggingface/lerobot/pull/2726)** — Contributing Reachy Mini robot support to LeRobot: teleoperation interface, motor control protocols, and test coverage. 888 additions across 14 files. Under review.
-
 ### Products
 
 **[MCPH](https://github.com/ravediamond/MCPH)** — MCP Hub ([mcph.io](https://mcph.io)). AI artifact storage and sharing platform built on the Model Context Protocol. Upload, organize, and share AI-generated content across Claude, ChatGPT, and any MCP-compatible tool. Features semantic search, poll collection, embeddable badges, and a full MCP server. TypeScript / Next.js / Firebase.
@@ -25,7 +23,8 @@ Based in Paris. Currently at Air Liquide. Focused on making AI systems that run 
 
 ### Open Source Contributions
 
-- **[langchain-ai/langchain-aws](https://github.com/langchain-ai/langchain-aws)** — Added `llms.txt` and `llms-full.txt` documentation for AI coding tool support (PRs [#564](https://github.com/langchain-ai/langchain-aws/pull/564), [#570](https://github.com/langchain-ai/langchain-aws/pull/570), merged)
+- **[huggingface/lerobot](https://github.com/huggingface/lerobot)** — Contributing Reachy Mini robot integration: teleoperation interface, motor control, sensor support, and tests
+- **[langchain-ai/langchain-aws](https://github.com/langchain-ai/langchain-aws)** — Added `llms.txt` documentation for AI coding tool support
 
 ### Technical Writing
 
