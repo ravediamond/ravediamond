@@ -28,12 +28,11 @@ Based in Paris. Currently at Air Liquide. Focused on making AI systems that run 
 
 ### Technical Writing
 
-**[Metadocs Blog Tutorials](https://github.com/ravediamond/Metadocs-blog-tutorial-code)** — Hands-on guides with code for deploying AI in production:
-- [Deploy a RAG application with LangChain, Streamlit, and OpenAI](https://www.metadocs.co/2024/03/26/deploy-a-rag-application-with-langchain-streamlit-and-openai-in-10-min/)
-- [Deploy a LLM on AWS SageMaker](https://www.metadocs.co/2024/03/19/deploy-a-llm-on-aws-in-5-min/)
+I write about deploying AI in production on **[Medium](https://medium.com/@ravindu.somawansa)** — covering RAG pipelines, LLM serving on AWS SageMaker, edge deployment, and agentic architectures.
 
 ## Technical Interests
 
+- **Agentic AI** — Tool-calling agents, multi-step reasoning, MCP integrations, autonomous decision loops
 - **Local/edge AI** — Running multi-model pipelines on consumer hardware without cloud dependencies
 - **Robotics** — Autonomous companion robots, assistive robotics, teleoperation, LeRobot ecosystem
 - **SLM engineering** — Tool calling with 3B-4B models, working around reliability limits, quantization for edge deployment
@@ -45,6 +44,6 @@ Based in Paris. Currently at Air Liquide. Focused on making AI systems that run 
 
 ## Links
 
-- [Blog](https://medium.com/@ravindu.somawansa)
+- [Medium](https://medium.com/@ravindu.somawansa)
 - [Twitter/X](https://twitter.com/RSomaw)
 - [HuggingFace Space](https://huggingface.co/spaces/ravediamond/baby-reachy-mini-companion)
