@@ -19,7 +19,7 @@ Based in Paris. Currently at Air Liquide. Focused on making AI systems that run 
 
 **[MCPH](https://github.com/ravediamond/MCPH)** — MCP Hub ([mcph.io](https://mcph.io)). AI artifact storage and sharing platform built on the Model Context Protocol. Upload, organize, and share AI-generated content across Claude, ChatGPT, and any MCP-compatible tool. Features semantic search, poll collection, embeddable badges, and a full MCP server. TypeScript / Next.js / Firebase.
 
-**[EvalNow](https://github.com/ravediamond/simple-eval)** — A lightweight AI evaluation tool. Upload a dataset (CSV/JSONL/Excel), get instant AI-powered scoring with detailed reasoning. Privacy-first: no data storage, in-memory processing only. Python / FastAPI.
+**[EvalNow](https://github.com/ravediamond/simple-eval)** — A lightweight AI evaluation tool ([evalnow.xyz](https://evalnow.xyz/)). Upload a dataset (CSV/JSONL/Excel), get instant AI-powered scoring with detailed reasoning. Privacy-first: no data storage, in-memory processing only. Python / FastAPI.
 
 ### Open Source Contributions
 
