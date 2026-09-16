@@ -4,11 +4,13 @@
 
 Based in Paris. Currently at Air Liquide. Focused on making AI systems that run locally, respect privacy, and work on consumer hardware.
 
+**Current focus: runtime and pre-deployment safety verification for VLA policies** — is a trained policy's output safe to send to the actuators, and did it actually learn to condition on vision/language at all, rather than "how good was the rollout."
+
 ## What I'm Working On
 
 ### Robotics & Edge AI
 
-**[lerobot-jetson](https://github.com/ravediamond/lerobot-jetson)** — Docker image bringing CUDA-accelerated PyTorch to LeRobot on NVIDIA Jetson Orin. No official channel ships a cp312 CUDA torch wheel for Jetson, and the usual community fallback (`jetson-containers`) has been unmaintained since 2025 — this builds torch, torchcodec, and torchvision from source instead. Verified on real Orin hardware: GPU-accelerated video decode, working `torch.distributed`, real policy inference. Full build ~5.5h, 92% of that compiling PyTorch alone. Mirrored into `huggingface/lerobot`'s own repo as a community-maintained Dockerfile ([#4599](https://github.com/huggingface/lerobot/pull/4599)).
+**[lerobot-jetson](https://github.com/ravediamond/lerobot-jetson)** — Docker image bringing CUDA-accelerated PyTorch to LeRobot on NVIDIA Jetson Orin. No official channel ships a cp312 CUDA torch wheel for Jetson, and the usual community fallback (`jetson-containers`) has been unmaintained since 2025 — this builds torch, torchcodec, and torchvision from source instead. Verified on real Orin hardware: GPU-accelerated video decode, working `torch.distributed`, real policy inference. Full build ~5.5h, 92% of that compiling PyTorch alone. Mirrored into `huggingface/lerobot`'s own repo as a community-maintained Dockerfile ([#4599](https://github.com/huggingface/lerobot/pull/4599)). Full technical write-up: [Why is it so hard to run LeRobot on NVIDIA Jetson?](https://huggingface.co/blog/ravediamond/why-is-it-so-hard-to-run-lerobot-on-nvidia-jetson)
 
 **[Baby Reachy-Mini Companion](https://github.com/ravediamond/baby-reachy-mini-companion)** — An autonomous AI nursery companion built on the Reachy Mini robot. 7 AI models (VAD, STT, TTS, YAMNet, YOLO, LLM, VLM) orchestrated on-device with zero cloud dependency. The robot listens, sees, reasons via tool-calling SLMs, detects baby cries, spots dangerous objects, and alerts parents — all running locally on a Mac or a $700 NVIDIA Jetson Orin NX.
 
@@ -17,7 +19,7 @@ Based in Paris. Currently at Air Liquide. Focused on making AI systems that run 
 - Deployed on NVIDIA Jetson Orin NX via vLLM and llama.cpp with quantized models (~3s end-to-end latency)
 - Built for the **NVIDIA GTC x Hugging Face Golden Ticket Contest** — ranked #2 in community rankings
 
-**[lerobot-policy-turbovla-so101](https://github.com/ravediamond/lerobot-policy-turbovla-so101)** — Porting [TurboVLA](https://github.com/H-EmbodVis/TurboVLA) (a lightweight vision-language-action model — DINOv3 + BERT, no full VLM backbone) into LeRobot and validating it on a real SO-101 arm, not just simulation benchmarks. Found and diagnosed a real training failure along the way: a checkpoint that looked healthy by every loss-curve signal had actually learned a proprioceptive shortcut (predicting `action ≈ current state`, nearly ignoring both camera input and language instructions) — root-caused, fixed by warm-starting from the original paper's fine-tuned vision weights and unfreezing the backbone, then re-verified with an input-sensitivity gate.
+**[lerobot-policy-turbovla-so101](https://github.com/ravediamond/lerobot-policy-turbovla-so101)** — Porting [TurboVLA](https://github.com/H-EmbodVis/TurboVLA) (a lightweight vision-language-action model — DINOv3 + BERT, no full VLM backbone) into LeRobot and validating it on a real SO-101 arm, not just simulation benchmarks. Found and diagnosed a real training failure along the way: a checkpoint that looked healthy by every loss-curve signal had actually learned a proprioceptive shortcut (predicting `action ≈ current state`, nearly ignoring both camera input and language instructions) — root-caused, fixed by warm-starting from the original paper's fine-tuned vision weights and unfreezing the backbone, then re-verified with an input-sensitivity gate (zero the cameras, swap the language instruction, confirm the predicted action actually moves).
 
 ### Products
 
@@ -27,18 +29,20 @@ Based in Paris. Currently at Air Liquide. Focused on making AI systems that run 
 
 ### Open Source Contributions
 
-- **[huggingface/lerobot](https://github.com/huggingface/lerobot)** — `ChunkSafetyProcessorStep`, a policy-agnostic guard against corrupted/out-of-bounds predicted action chunks ([#4241](https://github.com/huggingface/lerobot/pull/4241)); fixed a future-frame information leak in VLA-JEPA's world-model training objective ([#4381](https://github.com/huggingface/lerobot/pull/4381)); Jetson Dockerfile + install docs, mirrored from `lerobot-jetson` ([#4599](https://github.com/huggingface/lerobot/pull/4599)); Reachy Mini teleoperation/motor-control integration; co-authored fixes to the `draccus` CLI-config error surface ([#4260](https://github.com/huggingface/lerobot/pull/4260), [#4265](https://github.com/huggingface/lerobot/pull/4265))
+- **[huggingface/lerobot](https://github.com/huggingface/lerobot)** — `ChunkSafetyProcessorStep`, a policy-agnostic runtime guard against corrupted/out-of-bounds predicted action chunks ([#4241](https://github.com/huggingface/lerobot/pull/4241)); fixed a future-frame information leak in VLA-JEPA's world-model training objective ([#4381](https://github.com/huggingface/lerobot/pull/4381)); Jetson Dockerfile + install docs, mirrored from `lerobot-jetson` ([#4599](https://github.com/huggingface/lerobot/pull/4599)); Reachy Mini teleoperation/motor-control integration; co-authored fixes to the `draccus` CLI-config error surface ([#4260](https://github.com/huggingface/lerobot/pull/4260), [#4265](https://github.com/huggingface/lerobot/pull/4265))
 - **[langchain-ai/langchain-aws](https://github.com/langchain-ai/langchain-aws)** — Added `llms.txt` documentation for AI coding tool support
 
 ### Technical Writing
 
-I write about deploying AI in production on **[Medium](https://medium.com/@ravindu.somawansa)** — covering RAG pipelines, LLM serving on AWS SageMaker, edge deployment, and agentic architectures.
+- [Why is it so hard to run LeRobot on NVIDIA Jetson?](https://huggingface.co/blog/ravediamond/why-is-it-so-hard-to-run-lerobot-on-nvidia-jetson) — HF blog, the full engineering story behind `lerobot-jetson`.
+- I also write about deploying AI in production on **[Medium](https://medium.com/@ravindu.somawansa)** — RAG pipelines, LLM serving on AWS SageMaker, edge deployment, and agentic architectures.
 
 ## Technical Interests
 
-- **Agentic AI** — Tool-calling agents, multi-step reasoning, MCP integrations, autonomous decision loops
-- **Local/edge AI** — Running multi-model pipelines on consumer hardware without cloud dependencies
+- **VLA policy safety & verification** — catching policies that don't actually condition on their inputs, guarding runtime outputs before they reach actuators
 - **Robotics** — Autonomous companion robots, assistive robotics, teleoperation, LeRobot ecosystem
+- **Local/edge AI** — Running multi-model pipelines on consumer hardware without cloud dependencies
+- **Agentic AI** — Tool-calling agents, multi-step reasoning, MCP integrations, autonomous decision loops
 - **SLM engineering** — Tool calling with 3B-4B models, working around reliability limits, quantization for edge deployment
 - **NVIDIA Jetson** — vLLM / llama.cpp deployment, memory optimization, DLA core utilization
 
