@@ -10,6 +10,8 @@ Based in Paris. Currently at Air Liquide. Focused on making AI systems that run 
 
 ### Robotics & Edge AI
 
+**[shissorobotics.com](https://shissorobotics.com)** — robot-learning papers re-tested on a ≈ €1,350 SO-101 + Jetson Orin NX rig, each with the bar written before the run, the verdict, the cost and the code ([register](https://shissorobotics.com/papers/), [repo](https://github.com/ravediamond/paper-vs-hardware)).
+
 **[lerobot-jetson](https://github.com/ravediamond/lerobot-jetson)** — Docker image bringing CUDA-accelerated PyTorch to LeRobot on NVIDIA Jetson Orin. No official channel ships a cp312 CUDA torch wheel for Jetson, and the usual community fallback (`jetson-containers`) has been unmaintained since 2025 — this builds torch, torchcodec, and torchvision from source instead. Verified on real Orin hardware: GPU-accelerated video decode, working `torch.distributed`, real policy inference. Full build ~5.5h, 92% of that compiling PyTorch alone. Mirrored into `huggingface/lerobot`'s own repo as a community-maintained Dockerfile ([#4599](https://github.com/huggingface/lerobot/pull/4599)). Full technical write-up: [Why is it so hard to run LeRobot on NVIDIA Jetson?](https://huggingface.co/blog/ravediamond/why-is-it-so-hard-to-run-lerobot-on-nvidia-jetson)
 
 **[Baby Reachy-Mini Companion](https://github.com/ravediamond/baby-reachy-mini-companion)** — An autonomous AI nursery companion built on the Reachy Mini robot. 7 AI models (VAD, STT, TTS, YAMNet, YOLO, LLM, VLM) orchestrated on-device with zero cloud dependency. The robot listens, sees, reasons via tool-calling SLMs, detects baby cries, spots dangerous objects, and alerts parents — all running locally on a Mac or a $700 NVIDIA Jetson Orin NX.
@@ -52,6 +54,8 @@ Based in Paris. Currently at Air Liquide. Focused on making AI systems that run 
 
 ## Links
 
+- [shissorobotics.com](https://shissorobotics.com)
+- [LinkedIn](https://www.linkedin.com/in/ravindusomawansa/)
 - [Medium](https://medium.com/@ravindu.somawansa)
 - [Twitter/X](https://twitter.com/RSomaw)
 - [HuggingFace Space](https://huggingface.co/spaces/ravediamond/baby-reachy-mini-companion)
